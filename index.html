@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Genarator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Genarate a <br> <span>Random Password</span></h1>
+        <div class="inputs">
+            <input type="text" id="password" placeholder="here is your password">
+            <i class="fa-regular fa-copy" onclick="copyPassword()"></i>
+        </div>
+        <button onclick="createPassword()" class="btn"> <i class="fa-solid fa-bolt"></i>Genarate Password</button>
+    </div>
+
+
+
+    <script>
+        const passwordBox = document.getElementById("password");
+        const length = 8;
+
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        const numbers = "0123456789";
+        const specialChar = "!@#$%^&*()_+-={}:<>?";
+        // const allChar = upperCase + lowerCase + numbers + specialChar;
+        const allChar = upperCase + lowerCase + numbers + specialChar;
+
+        function createPassword(){
+            let password = "";
+            password += upperCase[Math.floor(Math.random() * upperCase.length)];
+            password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+            password += numbers[Math.floor(Math.random() * numbers.length)];
+            password += specialChar[Math.floor(Math.random() * specialChar.length)];
+
+            while (length > password.length){
+                password += allChar[Math.floor(Math.random() * allChar.length)];
+            }
+            passwordBox.value = password;
+        }
+
+
+        function copyPassword(){
+            passwordBox.select();
+            document.execCommand("copy");
+            // passwordBox.remove();
+        }
+    </script>
+</body>
+
+</html>
